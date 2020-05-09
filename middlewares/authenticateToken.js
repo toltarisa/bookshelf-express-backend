@@ -1,15 +1,24 @@
 const jwt = require('jsonwebtoken');
-const authenticateToken = (req,res,next) => {
-    const authHeader = req.headers['Authorizaton'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if(token == null) res.sendStatus(401);
+require('dotenv').config();
+const verifyToken = (req,res,next) => {
+    const authHeader = req.headers['authorization'];
     
-    jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user) => {
-        if(err) return res.sendStatus(403);
-        req.user = user;
-        next();
-    })
+    if(authHeader) {
+        const token = authHeader && authHeader.split(' ')[1];
+        
+        jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user) => {
+            if(err) {
+                return res.sendStatus(403);
+            }
+            req.user = user;
+            next();
+        })
+    }else {
+        res.sendStatus(401);
+    }
+
+    
+   
 }
 
-exports.authenticateToken = authenticateToken;
+exports.verifyToken = verifyToken;

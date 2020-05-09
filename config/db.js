@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+require('dotenv').config();
 
 module.exports = () => {
     mongoose.connect(`mongodb://${process.env.MONGOOSE_USERNAME}:${process.env.MONGOOSE_PASSWORD}@ds131800.mlab.com:31800/bookshelf`,
