@@ -1,0 +1,246 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Bookshelf backend API docs",
+      "description": "bookshelf-backend-app api docs",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    
+   
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/users/register": {
+        "post": {
+          "tags": [
+            "Register"
+          ],
+          "summary": "Yeni kullanıcı oluştur",
+          "parameters": [
+            {
+                "in": "body",
+                "name": "body",
+                "description": "User nesnesi",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definitions/User"
+                }
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "Kullanıcı Başarıyla Oluşturuldu"
+            },
+            "400": {
+                "description": "Hatalı İstek"
+            }
+          }
+        }
+      },
+      "/api/users/login": {
+        "post": {
+          "tags": [
+            "Login"
+          ],
+          "summary": "Kullanıcı Login olacak",
+          "parameters": [
+              {
+                  "in":"body",
+                  "name": "body",
+                  "description": "Login bilgileri",
+                  "required": true,
+                  "schema": {
+                      "type":"object",
+                      "$ref": "#/definitions/LoginRequest"
+                  }
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/LoginResponse"
+              }
+            }
+          }
+        }
+      },
+      "/api/users/": {
+        "get": {
+          "tags": [
+            "Tüm kullanıcıları getir"
+          ],
+          "summary": "Tüm kullanıcıları listeler",
+          "produces": [
+            "application/json"
+          ],
+          "security": [{
+            "JWT":[]
+        }],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            },
+            "401": {
+                "description": "İzinsiz giriş denemesi"
+            },
+            "403": {
+                "description": "Token süresi dolmuş olabilir."
+            },
+            "500": {
+              "description": "Server hatası"
+            }
+          }
+        }
+      },
+      "/api/books/comments":{
+          "post": {
+              "tags": ["Yorum Oluştur"],
+              "summary": "İlgili kitaba yorum oluşturulur",
+              "produces":["application/json"],
+              "security": [{"JWT":[]}],
+              "parameters": [
+                {
+                    "in":"body",
+                    "name": "body",
+                    "description": "Login bilgileri",
+                    "required": true,
+                    "schema": {
+                        "type":"object",
+                        "$ref": "#/definitions/CommentRequest"
+                    }
+                }
+            ],
+              "responses": {
+                  "201":{
+                      "description": "Yorum Oluşturuldu"
+                  },
+                  "401": {
+                    "description": "İzinsiz giriş denemesi"
+                  },
+                "403": {
+                    "description": "Token süresi dolmuş olabilir."
+                },
+                "500": {
+                    "description": "Yorum oluşturulurken hata meydana geldi"
+                }
+              }
+          }
+      },
+      "/api/books/comments/{id}":{
+        "delete": {
+            "tags": ["Yorum Silinir"],
+            "summary": "İlgili kitaptan yorum silinir",
+            "produces":["application/json"],
+            "security": [{"JWT":[]}],
+            "parameters": [
+              {
+                  "in":"path",
+                  "name": "path",
+                  "description": "Silinecek yorumun id'si url'den geliecek(query parameter)",
+                  "required": true,
+                  "type": "string"
+              }
+          ],
+            "responses": {
+                "200":{
+                    "description": "Yorum Silindi"
+                },
+                "401": {
+                  "description": "İzinsiz giriş denemesi"
+                },
+              "403": {
+                  "description": "Token süresi dolmuş olabilir."
+              },
+              "500": {
+                  "description": "Yorum silinirken hata meydana geldi"
+              }
+            }
+        }
+    }
+    },
+    "securityDefinitions": {
+        "JWT": {
+            "description": "auth headerda bearer token ile login",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+         }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+              "type":"string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+              "type":"string"
+          }
+        }
+      },
+      "LoginResponse": {
+          "type":"object",
+          "properties": {
+              "status":{
+                  "type":"boolean"
+              },
+              "author_id": {
+                  "type":"string"
+              },
+              "username":{
+                  "type":"string"
+              },
+              "password": {
+                  "type":"string"
+              },
+              "token": {
+                  "type":"string"
+              }
+          }
+      },
+      "LoginRequest": {
+          "type":"object",
+          "properties": {
+              "username":{
+                  "type":"string"
+              },
+              "password": {
+                  "type":"string"
+              }
+          }
+      },
+      "CommentRequest": {
+          "type":"object",
+          "properties": {
+              "author_id":{
+                  "type":"string"
+              },
+              "text": {
+                  "type":"string"
+              },
+              "book_id": {
+                  "type":"string"
+              }
+          }
+      }
+    }
+  }

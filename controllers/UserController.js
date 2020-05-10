@@ -22,15 +22,19 @@ const login = (req,res) => {
 
     User.findOne({username})
     .then(data => {
+        console.log(data._id,data.password);
         bcrypt.compare(password,data.password)
-        .then(data => {
-            if(!data) {
+        .then(value => {
+           
+            
+            if(!value) {
                 res.status(401).send("Kullanıcı adı veya şifre yanlış");
             }else {
                 const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{expiresIn:60*60});
                 res.cookie('auth',token);
                 res.json({
                     status:true,
+                    author_id:data._id,
                     username,
                     password:data.password,
                     token

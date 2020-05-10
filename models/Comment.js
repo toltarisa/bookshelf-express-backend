@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
+    book_id:{type:mongoose.Schema.Types.ObjectId},
     text: {
         type:String
     },
-    author: [{type:mongoose.Schema.Types.ObjectId,ref:'user'}]
+    author_id: {type:mongoose.Schema.Types.ObjectId},
+    
 });
 
 CommentSchema.set('timestamps',true);

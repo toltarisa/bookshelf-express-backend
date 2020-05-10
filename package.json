@@ -17,7 +17,9 @@
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.13",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

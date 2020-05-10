@@ -2,7 +2,27 @@ const mongoose = require('mongoose');
 
 const Schema =  mongoose.Schema;
 
-
+/**
+ * @swagger
+ * definitions:
+ *    User:
+ *      type: object
+ *      properties: 
+ *           id:
+ *              type: object
+ *           username:
+ *              type: string
+ *            email:
+ *              type: string
+ *            password: 
+ *              type: string
+ *              format: password
+ *            required:
+ *              - usernam
+ *              - email
+ *              - password
+ *            
+ */
 const UserSchema = new Schema({
     username: {
         type:String,
