@@ -21,7 +21,7 @@ const app = express();
 
 
 app.use('/api/docs',swaggerExpress.serve,swaggerExpress.setup(swaggerOptions));
-// view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
