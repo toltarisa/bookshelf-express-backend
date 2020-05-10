@@ -17,4 +17,5 @@ Bookshelf express js backend
 - [x] creating auth routes and verifyin jwt
 - [ ] creating CRUD operations for comment resource
 - [ ] Refactoring code 
+- [ ] Adding swagger API documentation for endpoints
 - [ ] Publishing API on Heroku
