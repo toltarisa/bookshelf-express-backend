@@ -9,5 +9,5 @@ router.post('/comments', verifyToken.verifyToken, CommentController.create);
 router.get('/comments', verifyToken.verifyToken, CommentController.getComments)
 router.get('/comments/:id',verifyToken.verifyToken,CommentController.getCommentById)
 // delete a comment from movie 
-router.delete('/comments/:id', verifyToken.verifyToken,CommentController.delete);
+router.delete('/comments/delete/:id', verifyToken.verifyToken,CommentController.delete);
 module.exports = router;

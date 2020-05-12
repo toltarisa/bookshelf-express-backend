@@ -6,5 +6,5 @@ const BookController = require('../controllers/BookController');
 
 router.get('/',verifyToken.verifyToken,BookController.getAllBooks)
 router.get("/:id",verifyToken.verifyToken,BookController.getBookById)
-router.delete('/:id', verifyToken.verifyToken,BookController.deleteBook);
+router.delete('/delete/:id', verifyToken.verifyToken,BookController.deleteBook);
 module.exports = router;

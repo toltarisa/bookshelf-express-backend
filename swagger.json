@@ -139,7 +139,7 @@
               }
           }
       },
-      "/api/books/comments/{id}":{
+      "/api/books/comments/delete/{id}":{
         "delete": {
             "tags": ["Yorum Silinir"],
             "summary": "İlgili kitaptan yorum silinir",
@@ -169,7 +169,146 @@
               }
             }
         }
-    }
+    },
+    "/api/books/comments/":{
+      "get":{
+        "tags":["Tüm yorumları listele"],
+        "summary":"Tüm yorumları listeyebilirsin",
+        "produces":["application/json"],
+        "security": [{"JWT":[]}],
+        
+        "responses": {
+          "200": {
+            "description":"Tüm yorumlar listelenir"
+          },
+          "401": {
+            "description": "İzinsiz giriş denemesi"
+          },
+        "403": {
+            "description": "Token süresi dolmuş olabilir."
+        },
+        "500": {
+            "description": "Yorumlar listelenirken hata meydana geldi"
+        }
+        }
+      }
+    },
+    "/api/books/comments/{id}":{
+      "get":{
+        "tags":["id'ye göre yorum getir"],
+        "summary":"id ye göre yorum getir",
+        "produces":["application/json"],
+        "security": [{"JWT":[]}],
+        "parameters": [
+          {
+              "in":"path",
+              "name": "path",
+              "description": "getirilecek yorumun id'si url'den geliecek(query parameter)",
+              "required": true,
+              "type": "string"
+          }
+      ],
+        "responses": {
+          "200": {
+            "description":"id'ye göre tek yorum listelenir"
+          },
+          "401": {
+            "description": "İzinsiz giriş denemesi"
+          },
+        "403": {
+            "description": "Token süresi dolmuş olabilir."
+        },
+        "500": {
+            "description": "Yorum listelenirken hata meydana geldi"
+        }
+        }
+      }
+    },
+    "/api/books/":{
+      "get": {
+        "tags":["Tüm kitapları listele"],
+        "summary":"Tüm kitapları listeyebilirsin",
+        "produces":["application/json"],
+        "security": [{"JWT":[]}],
+        
+        "responses": {
+          "200": {
+            "description":"Tüm kitaplar listelenir"
+          },
+          "401": {
+            "description": "İzinsiz giriş denemesi"
+          },
+        "403": {
+            "description": "Token süresi dolmuş olabilir."
+        },
+        "500": {
+            "description": "kitaplar listelenirken hata meydana geldi"
+        }
+        }
+      }
+    },
+    "/api/books/{id}":{
+      "get":{
+        "tags":["id'ye göre kitap getir"],
+        "summary":"id ye göre kitap getir",
+        "produces":["application/json"],
+        "security": [{"JWT":[]}],
+        "parameters": [
+          {
+              "in":"path",
+              "name": "path",
+              "description": "getirilecek kitabın id'si url'den geliecek(query parameter)",
+              "required": true,
+              "type": "string"
+          }
+      ],
+        "responses": {
+          "200": {
+            "description":"id'ye göre tek kitap listelenir"
+          },
+          "401": {
+            "description": "İzinsiz giriş denemesi"
+          },
+        "403": {
+            "description": "Token süresi dolmuş olabilir."
+        },
+        "500": {
+            "description": "Yorumlar listelenirken hata meydana geldi"
+        }
+        }
+      }
+    },
+    "/api/books/delete/{id}":{
+      "delete": {
+          "tags": ["Kitap Silinir"],
+          "summary": "İlgili id'ye sahip kitap silinir",
+          "produces":["application/json"],
+          "security": [{"JWT":[]}],
+          "parameters": [
+            {
+                "in":"path",
+                "name": "path",
+                "description": "Silinecek kitabın id'si url'den geliecek(query parameter)",
+                "required": true,
+                "type": "string"
+            }
+        ],
+          "responses": {
+              "200":{
+                  "description": "Kitap Silindi"
+              },
+              "401": {
+                "description": "İzinsiz giriş denemesi"
+              },
+            "403": {
+                "description": "Token süresi dolmuş olabilir."
+            },
+            "500": {
+                "description": "Kitap silinirken hata meydana geldi"
+            }
+          }
+      }
+  }
     },
     "securityDefinitions": {
         "JWT": {
