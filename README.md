@@ -19,4 +19,4 @@ Bookshelf express js backend
 - [x] creating CRUD operations on book resource
 - [ ] Refactoring code 
 - [x] Adding swagger API documentation for endpoints
-- [ ] Publishing API on Heroku
+- [x] Publishing API on Heroku
