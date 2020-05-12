@@ -16,7 +16,7 @@ Bookshelf express js backend
 - [x] Seeding Mongo Database with Google API data
 - [x] creating auth routes and verifyin jwt
 - [x] creating CRUD operations for comment resource
-- [ ] creating CRUD operations on book resource
+- [x] creating CRUD operations on book resource
 - [ ] Refactoring code 
 - [x] Adding swagger API documentation for endpoints
 - [ ] Publishing API on Heroku

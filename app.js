@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const commentRouter = require('./routes/comments');
+const bookRoutes = require('./routes/book');
 const swaggerOptions = require('./swagger.json');
 const app = express();  
 
@@ -30,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/books',commentRouter);
+app.use('/api/books',bookRoutes);
+
 app.use('/api/docs',swaggerExpress.serve,swaggerExpress.setup(swaggerOptions));
 
 // catch 404 and forward to error handler

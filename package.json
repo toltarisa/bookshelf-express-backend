@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "engines": {
     "node": "12.16.1"
@@ -23,7 +23,8 @@
     "mongoose": "^5.9.13",
     "morgan": "~1.9.1",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "uid": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

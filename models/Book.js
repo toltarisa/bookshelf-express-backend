@@ -19,7 +19,7 @@ const BookSchema = new Schema({
         type:Array
     },
     comments: [
-        {type:mongoose.Schema.Types.ObjectId,ref:'comment'}
+        {type:mongoose.Schema.Types.Mixed}
     ]
 
 })
