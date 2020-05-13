@@ -62,7 +62,7 @@ const getAllComments = (req,res) => {
 }
 
 const getCommentById = (req,res) => {
-    const id = req.params;
+    const {id} = req.params;
     
     Comment.findOne({_id:id},(err,data)=> {
         if(err) res.json(err);
